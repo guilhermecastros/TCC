@@ -150,7 +150,7 @@ def resnet50_model(img_rows, img_cols, color_type=1, num_classes=None):
     else:
       # Use pre-trained weights for Tensorflow backend
       weights_path = 'imagenet_models/resnet50_weights_tf_dim_ordering_tf_kernels.h5'
-
+      
     model.load_weights(weights_path)
 
     # Truncate and replace softmax layer for transfer learning
@@ -341,11 +341,14 @@ plt.title('Accuracy Curves',fontsize=16)
 
 # returns a compiled model
 # identical to the previous one
-#model = load_model('my_model.h5')
+model = load_model('resnet50_weights_tf_dim_ordering_tf_kernels.h5')
+
+# save big files on github
+# https://git-lfs.github.com/
 
 
-
-
+#with open('resnet50_weights.pickle', 'wb') as handle:
+    #pickle.dump(f, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 #predict_generator takes your test data and gives you the output.
 
