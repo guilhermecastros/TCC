@@ -20,7 +20,7 @@ def crop(infile,folderName,height,width):
         for j in range(imgwidth//width):
             box = (j*width, i*height, (j+1)*width, (i+1)*height)
             cropped_image = im.crop(box)
-            cropped_image.save('Exemplo 3/' + folderName + '/image' + str(count) + '.jpg')
+            cropped_image.save('Exemplo 4/' + folderName + '/image' + str(count) + '.jpg')
             count = count + 1
 
 
@@ -49,21 +49,21 @@ width = 64
 height = 64
 start_num = 1
 
-imageRoads = 'Exemplo 3/Mapa_estradas.jpg'
+imageRoads = 'Exemplo 4/Mapa_estradas.jpg'
 folderName = 'cropImgRoads'
 crop(imageRoads,folderName,height,width)
 
-imageOriginal = 'Exemplo 3/Mapa_original.jpg'
+imageOriginal = 'Exemplo 4/Mapa_original.jpg'
 folderName = 'cropImgOriginal'
 crop(imageOriginal,folderName,height,width)
 
 
 #--------------- Separar imagens com estradas ---------------#
-listOfImages = [f for f in os.listdir('Exemplo 3/cropImgRoads') if os.path.isfile(os.path.join('Exemplo 3/cropImgRoads', f))]
+listOfImages = [f for f in os.listdir('Exemplo 4/cropImgRoads') if os.path.isfile(os.path.join('Exemplo 4/cropImgRoads', f))]
 
 for imageName in listOfImages:
-    roadImg = Image.open('Exemplo 3/cropImgRoads/' + imageName)
-    originalImg = Image.open('Exemplo 3/cropImgOriginal/' + imageName)
+    roadImg = Image.open('Exemplo 4/cropImgRoads/' + imageName)
+    originalImg = Image.open('Exemplo 4/cropImgOriginal/' + imageName)
     
     width, height = roadImg.size
     pix = roadImg.load()
@@ -74,21 +74,21 @@ for imageName in listOfImages:
             if (r == 255 and g == 255 and b == 255):
                 count = count + 1
                 
-    if (count > 20):
-        originalImg.save('Exemplo 3/roads/' + imageName)
-    else:
-        originalImg.save('Exemplo 3/earth/' + imageName)
+    if (count > (height*height*0.05)):
+        originalImg.save('Exemplo 4/roads/' + imageName)
+    elif (count == 0):
+        originalImg.save('Exemplo 4/earth/' + imageName)
         
 
 #--------------- Selecionando imagens sem estradas ---------------#
-listOfEarthImages = [f for f in os.listdir('Exemplo 3/earth') if os.path.isfile(os.path.join('Exemplo 3/earth', f))]
-listOfRoadImages = [f for f in os.listdir('Exemplo 3/roads') if os.path.isfile(os.path.join('Exemplo 3/roads', f))]
+listOfEarthImages = [f for f in os.listdir('Exemplo 4/earth') if os.path.isfile(os.path.join('Exemplo 4/earth', f))]
+listOfRoadImages = [f for f in os.listdir('Exemplo 4/roads') if os.path.isfile(os.path.join('Exemplo 4/roads', f))]
 
-selectedEarthImgs = random.sample(range(1, len(listOfImages)), len(listOfRoadImages))
+selectedEarthImgs = random.sample(range(1, len(listOfEarthImages)), len(listOfRoadImages))
 
 for imageIndex in selectedEarthImgs:
-    earthImg = Image.open('Exemplo 3/earth/' + listOfEarthImages[imageIndex])
-    earthImg.save('Exemplo 3/selectedEarth/' + listOfEarthImages[imageIndex])
+    earthImg = Image.open('Exemplo 4/earth/' + listOfEarthImages[imageIndex])
+    earthImg.save('Exemplo 4/selectedEarth/' + listOfEarthImages[imageIndex])
     
     
 

@@ -26,18 +26,20 @@ def checkOverlap(newPixel, savedImageList):
 
 
 #--------------- Criando a máscara de binária das estradas ---------------#
-image = Image.open('Mapa_com_linhas.jpg')
+image = Image.open('Mapa_com_estradas.jpg')
 pix = image.load()
 count = 0
 width, height = image.size
 for w in range(width):
     for h in range(height):
         r,g,b = pix[(w,h)]
-        if (r > 150 and g > 150 and b < 50):
-            pix[(w,h)] = 255, 0, 0
-            print('r: ' + str(r) + ', ' + 'g: ' + str(g) + ', ' + 'b: ' + str(b))
+        #if (r > 150 and g > 150 and b < 50):
+        if (r >= 235 and g >= 235 and b >= 225):
+            #pix[(w,h)] = 255, 0, 0
+            #print('r: ' + str(r) + ', ' + 'g: ' + str(g) + ', ' + 'b: ' + str(b))
             #count = count + 1
             #if (count < 30):
+            #pix[(w,h)] = 255, 255, 255
             pix[(w,h)] = 255, 255, 255
         else:
             pix[(w,h)] = 0, 0, 0
@@ -45,8 +47,8 @@ for w in range(width):
 image.save('Mapa_estradas.jpg')
 
 
-image = Image.open('Exemplo 1/Mapa_estradas.jpg')
-image2 = Image.open('Exemplo 1/Mapa_original.jpg')
+image = Image.open('Exemplo 4/Mapa_estradas.jpg')
+image2 = Image.open('Exemplo 4/Mapa_original.jpg')
 # image.show()
 pix = image.load()
 count = 0
@@ -64,7 +66,7 @@ for w in range(width):
                 box = (left, upper, right, lower)
                 if (checkOverlap((w,h), savedImageList) == 0):
                     cropped_image = image2.crop((left, upper, right, lower))
-                    cropped_image.save('Exemplo 1/cropImg/image' + str(count) + '.jpg')
+                    cropped_image.save('Exemplo 4/cropImg/image' + str(count) + '.jpg')
                     print('count: ' + str(count))
                     #print('height: ' + str(h) + ', ')
                     #print('left: ' + str(left) + ', ')

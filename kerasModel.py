@@ -12,19 +12,19 @@ from random import shuffle
 
 #--------------- Criando o label dos dados ---------------#
 
-listOfSelectedEarthImages = [f for f in os.listdir('Exemplo 3/selectedEarth') if os.path.isfile(os.path.join('Exemplo 3/selectedEarth', f))]
-listOfRoadImages = [f for f in os.listdir('Exemplo 3/roads') if os.path.isfile(os.path.join('Exemplo 3/roads', f))]
+listOfSelectedEarthImages = [f for f in os.listdir('Exemplo 4/selectedEarth') if os.path.isfile(os.path.join('Exemplo 4/selectedEarth', f))]
+listOfRoadImages = [f for f in os.listdir('Exemplo 4/roads') if os.path.isfile(os.path.join('Exemplo 4/roads', f))]
     
 labelList = []
 for image in listOfSelectedEarthImages:
     #imagePath = glob.glob('Exemplo 3/selectedEarth/' + image)[0]
-    im = cv2.imread('Exemplo 3/selectedEarth/' + image)
+    im = cv2.imread('Exemplo 4/selectedEarth/' + image)
     #Image.open('Exemplo 3/selectedEarth/' + image)
     newImage = {'name': image, 'label': 'earth', 'data': im }
     labelList.append(newImage)
     
 for image in listOfRoadImages:
-    im = cv2.imread('Exemplo 3/roads/' + image)
+    im = cv2.imread('Exemplo 4/roads/' + image)
     newImage = {'name': image, 'label': 'road', 'data': im }
     labelList.append(newImage)
     
@@ -65,16 +65,16 @@ X_train, X_test, y_train, y_test = train_test_split(data, target, test_size=0.3,
 
 for index, image in enumerate(X_train):
     if(y_train[index] == 'earth'):
-        cv2.imwrite("./Exemplo 3/train/earth/" + str(index) + ".jpg", image)
+        cv2.imwrite("./Exemplo 4/train/earth/" + str(index) + ".jpg", image)
     else:
-        cv2.imwrite("./Exemplo 3/train/road/" + str(index) + ".jpg", image)
+        cv2.imwrite("./Exemplo 4/train/road/" + str(index) + ".jpg", image)
         
 
 for index, image in enumerate(X_test):
     if(y_test[index] == 'earth'):
-        cv2.imwrite("./Exemplo 3/test/earth/" + str(index) + ".jpg", image)
+        cv2.imwrite("./Exemplo 4/test/earth/" + str(index) + ".jpg", image)
     else:
-        cv2.imwrite("./Exemplo 3/test/road/" + str(index) + ".jpg", image)
+        cv2.imwrite("./Exemplo 4/test/road/" + str(index) + ".jpg", image)
     
 # Find the shape of input images and create the variable input_shape
 nRows,nCols,nDims = X_train[0].shape
