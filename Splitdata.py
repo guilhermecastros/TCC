@@ -50,3 +50,16 @@ for index, image in enumerate(X_test):
         cv2.imwrite("./Exemplo 4/test/earth/" + str(index) + ".jpg", image)
     else:
         cv2.imwrite("./Exemplo 4/test/road/" + str(index) + ".jpg", image)
+        
+        
+        
+        
+
+#--------------- Separando a mascara dos dados ---------------#
+listOfRoadImages = [f for f in os.listdir('Exemplo 7/roads') if os.path.isfile(os.path.join('Exemplo 7/roads', f))]
+    
+labelList = []
+for image in listOfRoadImages:
+    #imagePath = glob.glob('Exemplo 3/selectedEarth/' + image)[0]
+    im = cv2.imread('Exemplo 7/cropImgRoads/' + image)
+    cv2.imwrite("./Exemplo 7/roads_mask/" + str(image), im)
