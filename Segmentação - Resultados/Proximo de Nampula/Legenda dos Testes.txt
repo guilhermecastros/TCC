@@ -1,0 +1,1 @@
+Resultados para imagens com estradas aparentes.  1) Imagem real, 2) Máscarabinária real, 3) Máscara binária gerada pelo modelo e 4) Sobreposição da máscara geradasobre a imagem real
